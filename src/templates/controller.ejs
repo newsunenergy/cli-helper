@@ -1,0 +1,23 @@
+import { Request, Response } from 'express';
+import { <%= props.Service %> } from './<%= props.Service %>';
+
+export class <%= props.Controller %> {
+  private service: <%= props.Service %>;
+
+  constructor(service: <%= props.Service %>) {
+    this.service = service;
+  }
+
+  async handle(request: Request, response: Response) {
+    try {   
+
+      const <%= props.Module %> = await this.service.execute({} as any);
+
+
+      return response.status(200).json(<%= props.Module %>);
+    } catch (error) {
+
+      return response.status(400).json({ error: error.message });
+    }
+  }
+}

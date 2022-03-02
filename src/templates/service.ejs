@@ -1,0 +1,21 @@
+import { <%= props.Module %> } from '../../entities/<%= props.Module %>';
+import { <%= props.DTO %> } from './<%= props.DTO %>';
+import { <%= props.Repository %> } from '../../repositories/<%= props.Repository %>';
+import { <%= props.Validation %> } from './<%= props.Validation %>';
+
+export class <%= props.Service %> {
+  private repository: <%= props.Repository %>;
+  private validation: <%= props.Validation %>;
+
+  constructor(props: {
+    repository: <%= props.Repository %>,
+    validation: <%= props.Validation %>,
+  }) {
+    this.repository = props.repository;
+    this.validation = props.validation;
+  }
+
+  async execute(dto: <%= props.DTO %>) {
+
+  }
+}

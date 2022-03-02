@@ -1,0 +1,33 @@
+import { <%= props.Repository %> } from '../<%= props.Repository %>'
+import { prisma } from '../../../../shared/infra/prisma'
+import { <%= props.Module %> } from '../../entities/<%= props.Module %>'
+
+export class <%= props.Implementation %> implements <%= props.repository %>{
+  private static instance: <%= props.Implementation %>
+ 
+  private constructor(){}
+ 
+  public static getInstance() { 
+    if (!<%= props.Implementation %>.instance) { 
+      <%= props.Implementation %>.instance = new <%= props.Implementation %>() 
+    } 
+    return <%= props.Implementation %>.instance 
+  } 
+ 
+  public async create(toCreate: <%= props.Module %>) { 
+     return {} as any 
+  } 
+  public async findById(id: string) { 
+     return {} as any 
+  } 
+  public async findAll() { 
+     return {} as any 
+  } 
+  public async deleteById(id: string) { 
+     return {} as any 
+  } 
+  public async updateById(id: string) { 
+     return {} as any 
+  } 
+
+} 

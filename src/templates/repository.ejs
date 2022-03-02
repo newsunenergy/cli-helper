@@ -1,0 +1,10 @@
+
+import { <%= props.Module %> } from '../entities/<%=props.module %>'
+
+export interface <%= props.Repository %> {
+  create(toCreate: <%= props.Module %>): Promise<<%= props.Module %>>
+  findById(id: string): Promise<<%= props.Module %>>
+  findAll(): Promise<<%= props.Module %>[]>
+  deleteById(id: string): Promise<<%= props.Module %>>
+  updateById(id: string, toUpdate: <%= props.Module %>): Promise<<%= props.Module %>>
+}

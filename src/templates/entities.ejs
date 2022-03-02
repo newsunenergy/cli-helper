@@ -1,0 +1,13 @@
+import { <%= props.Module %>Fields } from "./<%= props.Module %>Fields"
+
+export class <%= props.Module %> extends <%= props.Module %>Fields{
+
+  private constructor() {
+    super()
+  }
+
+  static async create(props: {}) {
+
+    return new <%= props.Module %>();
+  }
+}
