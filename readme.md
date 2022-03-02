@@ -1,24 +1,11 @@
-# cli CLI
-
-A CLI for cli.
-
-## Customizing your CLI
-
-Check out the documentation at https://github.com/infinitered/gluegun/tree/master/docs.
-
-## Publishing to NPM
-
-To package your CLI up for NPM, do this:
-
-```shell
-$ npm login
-$ npm whoami
-$ npm test
-
-$ npm publish
+```bash
+yarn link
 ```
 
-# License
 
-MIT - see LICENSE
-
+```bash
+cli new:model product
+```
+```bash
+cli new:usecase product ImportFromSheets
+```
