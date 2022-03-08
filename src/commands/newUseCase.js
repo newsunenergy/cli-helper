@@ -27,6 +27,7 @@ module.exports = {
     await filesystem.dir(`./src/modules/${module}/useCase/${useCase}`)
 
     const Controller = UseCase + 'Controller'
+    const controller = useCase.charAt(0).toLowerCase() + ((useCase) + 'Controller').slice(1)
     const Service = UseCase + 'Service'
     const DTO = UseCase + 'DTO'
     const Validation = UseCase + 'Validation'
@@ -37,16 +38,24 @@ module.exports = {
       useCase,
       UseCase,
       Controller,
+      controller,
       Repository,
       repository,
       Service,
       DTO,
       Validation,
+      Implementation,
+      implementation
     }
 
     generate({
       template: 'controller.ejs',
       target: `./src/modules/${module}/useCase/${useCase}/${Controller}.ts`,
+      props,
+    })
+    generate({
+      template: 'index.ejs',
+      target: `./src/modules/${module}/useCase/${useCase}/index.ts`,
       props,
     })
 

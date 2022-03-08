@@ -1,0 +1,14 @@
+import { BaseException } from "../base/BaseException";
+
+export class InvalidQueryException extends BaseException {
+  private code = 400;
+  private type = "Invalid Query exception"
+  private message: string;
+
+  constructor(message: string, type?: string, code?: number) {
+    super()
+    this.message = message
+    this.type = type || this.type
+    this.code = code || this.code
+  }
+}

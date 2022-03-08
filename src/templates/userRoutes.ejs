@@ -1,0 +1,8 @@
+import { createUserController } from './../../../../modules/user/useCase/CreateUser';
+import { Router } from 'express';
+const route = Router()
+
+route.post("/", createUserController.handle.bind(createUserController))
+
+
+export { route as userRoutes } 

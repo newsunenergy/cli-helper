@@ -1,0 +1,27 @@
+import { v4 as uuid, validate as validateUUID } from "uuid"
+import { ValidationException } from "../errors";
+
+export abstract class BaseEntity {
+  
+  static emailMask = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+  
+  protected static createEmail(k: string) {
+    if (!BaseEntity.emailMask.test(k)) {
+      throw new ValidationException(`Invalid email`);
+    }
+    return k.trim();
+  }
+
+  protected static createId(k?: string) {
+    if (!k) { return uuid(); }
+
+    if (typeof k !== "string") {
+      throw new ValidationException(`Expected id to be string (uuid)`);
+    }
+    
+    if (!validateUUID(k)) {
+      throw new ValidationException(`Expected a valid ID, type uuid v4`)
+    }
+    return k.trim();
+  }
+}

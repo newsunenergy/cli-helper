@@ -17,5 +17,6 @@ export class <%= props.Service %> {
 
   async execute(dto: <%= props.DTO %>) {
 
+    this.validation.execute(dto)
   }
 }

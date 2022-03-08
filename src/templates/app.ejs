@@ -1,0 +1,10 @@
+import express from "express";
+
+import { config } from "./config/httpConfig";
+import { route } from "./routes";
+
+const app = express();
+
+app.use(express.json());
+app.use(config.apiVersion, route);
+app.listen(config.httpPort, config.httpOnReady);

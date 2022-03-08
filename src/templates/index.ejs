@@ -1,0 +1,16 @@
+import { <%= props.Implementation %> } from './../../repositories/implementation/<%= props.Implementation %>';
+import { <%= props.Validation %> } from './<%= props.Validation %>';
+import { <%= props.Service %> } from './<%= props.Service %>';
+import { <%= props.Controller %> } from './<%= props.Controller %>';
+
+const repository =  <%= props.Implementation %>.getInstance();
+
+const validation = new <%= props.Validation %>();
+
+const service = new <%= props.Service %>({
+  repository,
+  validation,
+});
+
+export const <%= props.controller %> =
+  new <%= props.Controller %>(service);

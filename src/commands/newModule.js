@@ -20,6 +20,7 @@ module.exports = {
     const repository = Module + 'Repository'
     const Implementation = 'Prisma' + Repository
     const implementation = 'Prisma' + Repository
+    const BaseEntity = 'BaseEntity' + Module
 
     await filesystem.dir(`./src/modules/${module}`)
     await filesystem.dir(`./src/modules/${module}/entities`)
@@ -32,17 +33,19 @@ module.exports = {
       props: {
         module,
         Module,
+        BaseEntity
       },
     })
-
     generate({
-      template: 'entities.abstract.ejs',
-      target: `./src/modules/${module}/entities/${Module}Fields.ts`,
+      template: 'baseentities.ejs',
+      target: `./src/modules/${module}/entities/${BaseEntity}.ts`,
       props: {
         module,
         Module,
+        BaseEntity
       },
     })
+
     generate({
       template: 'implementations.ejs',
       target: `./src/modules/${module}/repositories/implementation/${Implementation}.ts`,
