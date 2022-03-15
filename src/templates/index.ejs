@@ -1,3 +1,4 @@
+import { exceptionController } from './../../../../core/ApplicationExceptionController';
 import { <%= props.Implementation %> } from './../../repositories/implementation/<%= props.Implementation %>';
 import { <%= props.Validation %> } from './<%= props.Validation %>';
 import { <%= props.Service %> } from './<%= props.Service %>';
@@ -13,4 +14,7 @@ const service = new <%= props.Service %>({
 });
 
 export const <%= props.controller %> =
-  new <%= props.Controller %>(service);
+  new <%= props.Controller %>({
+    service,
+    exceptionController
+  });

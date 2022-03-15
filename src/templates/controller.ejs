@@ -1,11 +1,19 @@
 import { Request, Response } from 'express';
 import { <%= props.Service %> } from './<%= props.Service %>';
+import { ApplicationExceptionController } from './../../../../core/ApplicationExceptionController';
+
 
 export class <%= props.Controller %> {
-  private service: <%= props.Service %>;
 
-  constructor(service: <%= props.Service %>) {
-    this.service = service;
+  private service: <%= props.Service %>;
+  private exceptionController: ApplicationExceptionController;
+
+  constructor(props: {
+    service: <%= props.Service %>;
+    exceptionController: ApplicationExceptionController
+  }) {
+    this.service = props.service;
+    this.exceptionController = props.exceptionController;
   }
 
   async handle(request: Request, response: Response) {
@@ -16,8 +24,7 @@ export class <%= props.Controller %> {
 
       return response.status(200).json(<%= props.Module %>);
     } catch (error) {
-
-      return response.status(400).json({ error: error.message });
+      return this.exceptionController.handle(response, error)
     }
   }
 }
