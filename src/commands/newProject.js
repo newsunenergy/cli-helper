@@ -33,6 +33,7 @@ module.exports = {
     await filesystem.dir(`./${project}/src/shared/infra/http/middleware`)
     await filesystem.dir(`./${project}/src/shared/infra/http/routes`)
 
+    await filesystem.dir(`./${project}/src/core/types`)
     await filesystem.dir(`./${project}/src/core/base`)
     await filesystem.dir(`./${project}/src/core/errors`)
 
@@ -70,6 +71,21 @@ module.exports = {
     generate({
       template: 'corebaseEntity.ejs',
       target: `./${project}/src/core/base/BaseEntity.ts`,
+      props,
+    })
+    generate({
+      template: 'BaseApplicationException.ejs',
+      target: `./${project}/src/core/base/BaseApplicationException.ts`,
+      props,
+    })
+    generate({
+      template: 'ApplicationExceptionController.ejs',
+      target: `./${project}/src/core/ApplicationExceptionController.ts`,
+      props,
+    })
+    generate({
+      template: 'CoreTypes.ejs',
+      target: `./${project}/src/core/types/CoreTypes.ts`,
       props,
     })
 
@@ -136,9 +152,6 @@ module.exports = {
       props: props
     })
 
-
-
-
     generate({
       template: 'app.ejs',
       target: `./${project}/src/shared/infra/http/app.ts`,
@@ -172,11 +185,6 @@ module.exports = {
       target: `./${project}/src/shared/infra/prisma/client.ts`,
       props,
     })
-
-
-
-
-
 
     generate({
       template: 'controller.ejs',
@@ -228,11 +236,10 @@ module.exports = {
       props: props,
     })
 
-    info(`Executando yarn install...`)
    
     setTimeout(async () => {
-      await toolbox.system.run(`cd ${project} && yarn install`)
       info(`OK...`)
+      
     }, 500);
   
   },

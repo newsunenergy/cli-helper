@@ -1,0 +1,65 @@
+import {
+  AuthenticationException,
+  AuthorizationException,
+  InvalidQueryException,
+  QueryNotFound,
+  ValidationException,
+   PrismaClientKnownRequestError
+} from "../errors";
+
+import { Catch } from "../types";
+
+export abstract class BaseApplicationException {
+
+  protected AuthenticationException(C: Catch<AuthenticationException>) {
+  
+    const { response, error } = C;
+    return response.status(error.code).json(error);
+  }
+  protected ValidationException(C: Catch<ValidationException>) {
+  
+    const { response, error } = C;
+    return response.status(error.code).json(error);
+  }
+
+  protected InvalidQueryException(C: Catch<InvalidQueryException>) {
+    const { response, error } = C;
+    
+    return response.status(error.code).json(error);
+  }
+
+  protected AuthorizationException(C: Catch<AuthorizationException>) {
+    const { response, error } = C;
+    return response.status(error.code).json(error);
+  }
+  protected QueryNotFound(C: Catch<QueryNotFound>) {
+    const { response, error } = C;
+    return response.status(error.code).json(error);
+  }
+
+  protected PrismaClientKnownRequestError(C: Catch<PrismaClientKnownRequestError>) {
+    const { response, error } = C;
+
+    if (error.code === "P2002") {
+      return response.status(400).json({
+        error: "Failed to create. Looks like you already have a register",
+      });
+    }
+    /**
+     * Failed to delete on database
+     */
+    if (error.code === "P2025") {
+      return response
+        .status(400)
+        .json({
+          error:
+            "Failed to delete, cannot match any record with provided input.",
+        });
+    } else {
+      return response.status(500).json({ error });
+    }
+  }
+
+
+  
+}
