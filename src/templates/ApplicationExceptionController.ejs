@@ -3,46 +3,20 @@ import { Response } from "express";
 import { BaseApplicationException } from "./base/BaseApplicationException";
 import {
   AuthenticationException,
-  AuthorizationException,
   PrismaClientKnownRequestError,
   ValidationException,
   QueryNotFound,
   InvalidQueryException,
 } from "./errors";
-import { logger, Color } from "./utils/colorLogger";
 
 export class ApplicationExceptionController extends BaseApplicationException {
 
-  private shouldDisableConsoleLogs = false;
-  private defaultModule = "\nApplicationExceptionController\n"
-  private defaultPrefixMessage = `To hide error logs, run with --disableErrorLog property\n`
-
-  constructor(argv?: string[]) {
+   constructor(argv?: string[]) {
     super();
-    if (argv?.includes("--disableErrorLog")) {
-      this.shouldDisableConsoleLogs = true
-    }
+
   }
   handle(response: Response, error: unknown) {
 
-    if (!this.shouldDisableConsoleLogs) {
-      const { message } = error as any
-
-      logger([
-        {
-          message: this.defaultModule,
-          color: Color.pink
-        },
-        {
-          message: this.defaultPrefixMessage,
-          color: Color.yellow
-        },
-        {
-          color: Color.red,
-          message
-        },
-      ])
-    }
 
     if (error instanceof AuthenticationException) {
       return this.AuthenticationException({ response, error });

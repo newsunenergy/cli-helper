@@ -1,9 +1,9 @@
 import { BaseException } from "../base/BaseException";
 
 export class ValidationException extends BaseException{
-  private code = 400;
-  private type = "Validation exception"
-  private message: string;
+  public code = 400;
+  public type = "Validation exception"
+  public message: string;
 
   constructor(message: string, type?: string, code?: number) {
     super()

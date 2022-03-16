@@ -1,9 +1,9 @@
 import { BaseException } from "../base/BaseException";
 
 export class AuthenticationException extends BaseException {
-  private code = 401;
-  private type = "Authentication exception"
-  private message: string;
+  public code = 401;
+  public type = "Authentication exception"
+  public message: string;
 
   constructor(message: string, type?: string, code?: number) {
     super()
