@@ -105,6 +105,11 @@ module.exports = {
       props,
     })
     generate({
+      template: 'AuthorizationException.ejs',
+      target: `./${project}/src/core/errors/AuthorizationException.ts`,
+      props,
+    })
+    generate({
       template: 'ValidationException.ejs',
       target: `./${project}/src/core/errors/ValidationException.ts`,
       props,
